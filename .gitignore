@@ -1,0 +1,4 @@
+.vscode/
+dict
+*.o
+dictionary.txt
