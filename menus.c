@@ -14,8 +14,6 @@ int add_word() {
         if(len<0)
             printf("dict_getline(): error %d\n", len);
     }
-    
-
 }
 
 int main_menu() {
