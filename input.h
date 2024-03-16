@@ -9,6 +9,14 @@
 #define BUFF_OVERFLOW 1
 #define OPT_INVALID_NUM 2
 
+typedef struct {
+    char word[WORD_BUFF_SIZE];
+    char def[DEF_BUFF_SIZE];
+    int del;
+} ENTRY;
+
+typedef ENTRY* ENTRIES;
+
 int dict_clearbuf();
 int dict_getline(char *restrict s, int len);
 int opt_getnum(int *err_code);

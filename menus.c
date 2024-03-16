@@ -2,6 +2,7 @@
 
 #include "option.h"
 #include "input.h"
+#include "fhandler.h"
 
 int add_word() {
     char word[WORD_BUFF_SIZE];
@@ -14,6 +15,39 @@ int add_word() {
         if(len<0)
             printf("dict_getline(): error %d\n", len);
     }
+
+    char def[DEF_BUFF_SIZE];
+    len = -1;
+    while (len<0) {
+        printf("definition: ");
+        len = dict_getline(def, DEF_BUFF_SIZE);
+
+        if(len<0)
+            printf("dict_getline(): error %d\n", len);
+    }
+    
+    if(add_entry(word, def)) {
+        printf("add_word(): Can't add a new entry \
+in file\n");
+        return 1;
+    }
+    
+    return 0;
+}
+
+void del_word() {
+    char word[WORD_BUFF_SIZE];
+
+    int len = -1;
+    while (len<0) {
+        printf("Word: ");
+        len = dict_getline(word, WORD_BUFF_SIZE);
+
+        if(len<0)
+            printf("dict_getline(): error %d\n", len);
+    }
+
+    del_entry(word);
 }
 
 int main_menu() {
@@ -41,13 +75,13 @@ Choose from the following functions:";
 
     switch (choice) {
     case ADD:
-        /* code */
+        add_word();
         break;
     case DEL:
-        /* code */
+        del_word();
         break;
     case DISP:
-        /* code */
+        disp_entries();
         break;
     case EXIT:
         return 0;
